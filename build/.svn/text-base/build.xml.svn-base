@@ -1,0 +1,104 @@
+<project name="ASSURF.Examples" default="default" basedir="../">
+	
+	<condition property="exe" value=".exe">
+		<os family="windows"/>
+	</condition>
+	<condition property="exe" value="">
+		<os family="unix"/>
+	</condition>
+	
+	<condition property="FLEX_HOME" value="E:/FLEX_SDK_3">
+		<os family="windows"/>
+	</condition>
+	<condition property="FLEX_HOME" value="/VOLUMES/WORK/FLEX_SDK">
+		<os family="unix"/>
+	</condition>
+	
+	<property name="dir.build" value="${basedir}/build"/>
+	<property name="dir.src" value="${basedir}/src"/>
+	<property name="dir.bin" value="${basedir}/bin"/>
+	<property name="dir.lib" value="${basedir}/lib"/>
+	
+	<property file="${dir.build}/build.properties"/>
+	
+	<fail unless="FLEX_HOME"/>
+	<fail unless="flex.frameworks"/>
+	<fail unless="flex.bin"/>
+	<fail unless="flex.libs"/>
+	<fail unless="flex.compc"/>
+	<fail unless="flex.mxmlc"/>
+	<fail unless="flex.asdoc"/>
+	
+	<target name="default" depends="compileAll" />
+	
+	<target name="clean">
+		<delete failonerror="false">
+			<fileset dir="${dir.bin}" includes="**/*.swf"/>
+		</delete>
+	</target>
+	
+	<target name="CameraIPoints">
+		<antcall target="compile">
+			<param name="file" value="CameraIPoints"/>
+		</antcall>
+	</target>
+	<target name="CameraMatchPreviousFrame">
+		<antcall target="compile">
+			<param name="file" value="CameraMatchPreviousFrame"/>
+		</antcall>
+	</target>
+	<target name="CameraMatchWithHomography">
+		<antcall target="compile">
+			<param name="file" value="CameraMatchWithHomography"/>
+		</antcall>
+	</target>
+	<target name="StitchImagesInPanorama">
+		<antcall target="compile">
+			<param name="file" value="StitchImagesInPanorama"/>
+		</antcall>
+	</target>
+	<target name="CameraMatchMultipleReferences">
+		<antcall target="compile">
+			<param name="file" value="CameraMatchMultipleReferences"/>
+		</antcall>
+	</target>
+	<target name="DynamicMatchesWithSaveAndLoadRefs">
+		<antcall target="compile">
+			<param name="file" value="DynamicMatchesWithSaveAndLoadRefs"/>
+		</antcall>
+	</target>
+	<target name="CameraRegionOfInterest">
+		<antcall target="compile">
+			<param name="file" value="CameraRegionOfInterest"/>
+		</antcall>
+	</target>	
+	
+	<target name="compileAll" depends="clean">
+		<antcall target="CameraIPoints" />
+		<antcall target="CameraMatchPreviousFrame" />
+		<antcall target="CameraMatchWithHomography" />
+		<antcall target="StitchImagesInPanorama" />
+		<antcall target="CameraMatchMultipleReferences" />
+		<antcall target="DynamicMatchesWithSaveAndLoadRefs" />
+		<antcall target="CameraRegionOfInterest" />
+	</target>
+	
+	<target name="compile">
+		<fail unless="file"/>
+		<exec executable="${flex.mxmlc}">
+			<arg line="-define=CONFIG::Debug,false"/>
+			<arg line="-define+=CONFIG::Release,true"/>
+			<arg line="-strict"/>
+			<arg line="-optimize"/>
+			<arg line="-warnings"/>
+			<arg line="-target-player=10"/>
+			<arg line="-o '${dir.bin}/${file}.swf'"/>
+			<arg line="-el '${flex.libs}/player/10/playerglobal.swc'"/>
+			<arg line="-el '${flex.libs}/utilities.swc'"/>
+			<arg line="-l '${flex.libs}/framework.swc'"/>
+			<arg line="-l '${dir.lib}/ASSURF.swc'"/>
+			<arg line="-sp '${dir.src}'"/>
+			<arg line="-- '${dir.src}/${file}.as'"/>
+		</exec>
+	</target>
+</project>

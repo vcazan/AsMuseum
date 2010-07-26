@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/141/trunk/projects/ASSURF.Examples/src/ru/inspirit/surf_example/utils
+END
+SURFUtils.as
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/129/trunk/projects/ASSURF.Examples/src/ru/inspirit/surf_example/utils/SURFUtils.as
+END
+QuasimondoImageProcessor.as
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/141/trunk/projects/ASSURF.Examples/src/ru/inspirit/surf_example/utils/QuasimondoImageProcessor.as
+END
+RegionSelector.as
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/129/trunk/projects/ASSURF.Examples/src/ru/inspirit/surf_example/utils/RegionSelector.as
+END
+DistortImage.as
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/129/trunk/projects/ASSURF.Examples/src/ru/inspirit/surf_example/utils/DistortImage.as
+END

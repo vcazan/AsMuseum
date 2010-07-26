@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/126/trunk/projects/ASSURF/src/com/joa_ebert/apparat/memory
+END
+IMemoryPoolStrategy.as
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/126/trunk/projects/ASSURF/src/com/joa_ebert/apparat/memory/IMemoryPoolStrategy.as
+END
+ImmutableByteArray.as
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/126/trunk/projects/ASSURF/src/com/joa_ebert/apparat/memory/ImmutableByteArray.as
+END
+MemoryMath.as
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/126/trunk/projects/ASSURF/src/com/joa_ebert/apparat/memory/MemoryMath.as
+END
+MemoryPool.as
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/126/trunk/projects/ASSURF/src/com/joa_ebert/apparat/memory/MemoryPool.as
+END
+MemoryBlock.as
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/126/trunk/projects/ASSURF/src/com/joa_ebert/apparat/memory/MemoryBlock.as
+END
+Memory.as
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/126/trunk/projects/ASSURF/src/com/joa_ebert/apparat/memory/Memory.as
+END
