@@ -74,8 +74,6 @@ package
 			statusbar1.button_refresh.addEventListener(MouseEvent.CLICK, button_refreshMouseDownHandler);
 			statusbar1.button_magglass.addEventListener(MouseEvent.CLICK, button_magglassMouseDownHandler);
 			
-			poster1.match1.addEventListener(MouseEvent.CLICK, matchFind_MouseDownHandler);
-			
 			super();
 			init();
 		}
@@ -199,7 +197,6 @@ package
 			matchList = new MatchList(surf);
 			
 			camera.addEventListener(Event.RENDER, render);
-
 		}
 		
 		protected function onSaveList(e:Event):void 
@@ -237,23 +234,24 @@ package
 			poster1.gotoAndStop((matchId)+2);
 			MiniMap1.gotoAndPlay(2);
 			red1.visible = false;
+			poster1.match1.addEventListener(MouseEvent.CLICK, matchFind_MouseDownHandler);
 			}
 			
 			switch (matchId){
 				
 				case 0:
 					statusbar1.casename.htmlText = "Darth Maul";
-					statusbar1.exhibitname.htmlText = "GUNPOWDER TOUR";
+					statusbar1.exhibitname.htmlText = "Match Number One";
 					break;
 				
 				case 1:
 					statusbar1.casename.htmlText = "Darth Vader";
-					statusbar1.exhibitname.htmlText = "GUNPOWDER TOUR";
+					statusbar1.exhibitname.htmlText = "Match Number Two";
 					break;
 				
 				case 2:
 					statusbar1.casename.htmlText = "Luke Skywalker";
-					statusbar1.exhibitname.htmlText = "GUNPOWDER TOUR";
+					statusbar1.exhibitname.htmlText = "Match Number Three";
 					break;
 				default:
 					statusbar1.casename.htmlText = " ";
@@ -265,6 +263,7 @@ package
 				MiniMap1.gotoAndStop(1);
 				poster1.gotoAndStop(1);
 				red1.visible = true;
+				poster1.match1.removeEventListener(MouseEvent.CLICK, matchFind_MouseDownHandler);
 			}
 			
 			
@@ -316,8 +315,6 @@ package
 			contentwindow1.menu5.addEventListener(MouseEvent.CLICK, menu5DownHandler);
 			camera.active = false;
 
-			
-			
 		}
 	
 		private function menu1DownHandler(event:MouseEvent):void {
@@ -353,7 +350,6 @@ package
 
 			removeChild(contentwindow1);	
 			removeChild(frenchmusketcontent);
-			
 
 		}
 		private function button_magglassMouseDownHandler(event:MouseEvent):void {
