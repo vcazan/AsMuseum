@@ -32,21 +32,6 @@ package
 	import ru.inspirit.surf_example.utils.RegionSelector;
 	import ru.inspirit.surf_example.utils.SURFUtils;
 	
-	
-	
-	
-
-	
-	/**
-	 * Dynamicly add selected region as match reference
-	 * with ability to save current MatchList as local file
-	 * and also to load that file as MatchList
-	 *  
-	 * @author Eugene Zatepyakin
-	 */
-	
-	//[SWF(width='840',height='520',frameRate='33',backgroundColor='0x000000')]
-	
 	public class DynamicMatchesWithSaveAndLoadRefs extends FlashSURFExample 
 	{
 		public static const SCALE:Number = 1.5;
@@ -91,16 +76,12 @@ package
 			
 			poster1.match1.addEventListener(MouseEvent.CLICK, matchFind_MouseDownHandler);
 			
-
-
-			
 			super();
 			init();
 		}
 		
 		private function init(e:Event = null):void
-		{
-			
+		{		
 		
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
@@ -120,7 +101,6 @@ package
 			
 			new CheckBox(p, 100, 11, 'Debug', debug);
  
-			
 			var pb:PushButton;
 			
 			pb = new PushButton(p, 590, 6, 'SELECT REGION', onSelectRegion);
@@ -132,7 +112,6 @@ package
 			pb.height = 16;
 			pb = new PushButton(p, 700, 21, 'LOAD MATCHES', onLoadList);
 			pb.height = 16;
-			
 		
 			view = new Sprite();
 			view.y = 40;
@@ -171,14 +150,12 @@ package
 			addChild(MiniMap1);
 			addChild(statusbar1);
 
-			
 			poster1.gotoAndStop(1);
 			
 			matchList = new MatchList(surf);
 			
 			camera.addEventListener(Event.RENDER, render);
 			
-
 		}
 		
 		protected function debug(e:Event):void 
