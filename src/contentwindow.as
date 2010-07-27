@@ -6,7 +6,7 @@ package
 	{
 		public function contentwindow()
 		{
-			this.x = 525;
+			this.x = 325;
 			this.y = 40;
 
 			super();

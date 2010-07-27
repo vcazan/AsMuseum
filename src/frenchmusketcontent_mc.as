@@ -6,7 +6,7 @@ package
 	{
 		public function frenchmusketcontent_mc()
 		{
-			this.x = 525;
+			this.x = 315;
 			this.y = 40;
 			super();
 		}
