@@ -8,6 +8,7 @@ package
 		{
 			this.y = 400;
 			super();
+			this.visible = false;
 		}
 	}
 }

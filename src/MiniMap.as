@@ -6,8 +6,8 @@ package
 	{
 		public function MiniMap()
 		{
-			this.x = 0;
-			this.y = 40;
+			this.x = 20;
+			this.y = 240;
 			super();
 		}
 	}
