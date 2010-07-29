@@ -7,7 +7,7 @@ package
 		public function MiniMap()
 		{
 			this.x = 20;
-			this.y = 240;
+			this.y = 299;
 			super();
 		}
 	}

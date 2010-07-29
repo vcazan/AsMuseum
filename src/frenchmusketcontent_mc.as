@@ -6,8 +6,8 @@ package
 	{
 		public function frenchmusketcontent_mc()
 		{
-			this.x = 315;
-			this.y = 40;
+			this.x = 960/2;
+			this.y = 590/2;
 			super();
 		}
 	}
