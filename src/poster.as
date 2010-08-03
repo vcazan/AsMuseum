@@ -6,7 +6,7 @@ package
 	{
 		public function poster()
 		{
-			this.x = 695;
+			this.x = 650;
 			this.y = 299;
 			super();
 		}
