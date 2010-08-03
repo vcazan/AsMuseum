@@ -6,7 +6,7 @@ package
 	{
 		public function statusbar()
 		{
-			this.y = 39;
+
 			super();
 			//this.visible = false;
 		}
