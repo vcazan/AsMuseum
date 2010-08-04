@@ -274,9 +274,9 @@
 		}
 		private function button_backMouseDownHandler(event:MouseEvent):void {
 			if (isMatched){
-			frenchmusketcontent.gotoAndPlay(78);
-			isMatched = false;
-			camera.active = true;
+				frenchmusketcontent.gotoAndPlay(78);
+				isMatched = false;
+				camera.active = true;
 			}
 			if (search){
 				addChild(poster1);
@@ -287,13 +287,12 @@
 				if (search == false){
 					addChild(poster1);
 					search = true;
-				}else{
+				}
+				else
+				{
 					search = false;
 					removeChild(poster1);
 				}
-			
-
-			
 			}
 		}
 		
