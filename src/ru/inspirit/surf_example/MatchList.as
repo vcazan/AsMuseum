@@ -54,11 +54,10 @@ package ru.inspirit.surf_example
 			var i:int, ind:int = -1, n:int;
 			var el:MatchElement;
 			var matched:Vector.<MatchElement> = new Vector.<MatchElement>();
-			
-			matchId = 999;
-			
+			matchId = 666;
 			
 			if(elementsCount == 0) return matched;
+			else matchId = 999;
 			
 			n = elementsCount;
 			
@@ -91,7 +90,10 @@ package ru.inspirit.surf_example
 			
 			return matched;
 		}
-		
+		public function matchCount():int
+		{
+			return elementsCount;
+		}
 		public function getMatchId():int
 		{
 			return matchId;

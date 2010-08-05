@@ -45,7 +45,7 @@ package ru.inspirit.surf_example
 		{
 			p = new Panel(this);
 			p.width = stage.stageWidth;
-			p.height = 40;
+			p.height = 0;
 
 			Style.PANEL = 0x333333;
 			Style.BUTTON_FACE = 0x333333;
@@ -62,7 +62,7 @@ package ru.inspirit.surf_example
 			{
 				_ms_prev = _timer;
 
-				fps_txt.text = 'FPS: ' + _fps + ' / ' + stage.frameRate +  "\nMEM: " + Number((System.totalMemory * 0.000000954).toFixed(3));
+				//fps_txt.text = 'FPS: ' + _fps + ' / ' + stage.frameRate +  "\nMEM: " + Number((System.totalMemory * 0.000000954).toFixed(3));
 				//trace('FPS: ' + _fps + ' / ' + stage.frameRate +  "\nMEM: " + Number((System.totalMemory * 0.000000954).toFixed(3)));
 				_fps = 0;
 				
