@@ -54,10 +54,10 @@ package ru.inspirit.surf_example
 			var i:int, ind:int = -1, n:int;
 			var el:MatchElement;
 			var matched:Vector.<MatchElement> = new Vector.<MatchElement>();
-			matchId = 666;
+			matchId = 666; ///666 Will mean that there is no file currently selected with points data
 			
 			if(elementsCount == 0) return matched;
-			else matchId = 999;
+			else matchId = 999; //gets switched to 999 once we have a file loaded but no matches are on the screen
 			
 			n = elementsCount;
 			

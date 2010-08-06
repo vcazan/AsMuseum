@@ -70,6 +70,8 @@
 
 		private var frenchmusketcontent:MovieClip = new frenchmusketcontent_mc() as MovieClip;
 
+		private var oldMatch:int; //Used for storing an instance of the last matchId
+
 
 		public function AsMuseum() 
 		{
@@ -112,11 +114,11 @@
 			
 			screenBmp.bitmapData = camera.bitmapData;
 			
-			surfOptions = new SURFOptions(int(320 / SCALE), int(240/ SCALE), 200, 0.003, true, 4, 4, 2);
+			surfOptions = new SURFOptions(int(320 / SCALE), int(240/ SCALE), 200, 0.003, true, 4, 4, 2); //Major surf options and camera size
 			surf = new ASSURF(surfOptions);
 			
-			surf.pointMatchFactor = 5.5;
-			surf.pointsThreshold = 0.001
+			surf.pointMatchFactor = 5.5; //These are replacemnts for the HUD sliders that were here before
+			surf.pointsThreshold = 0.001 //Numbers have been tested and seem the best for our application
 			surf.pointMatchFactor = 0.45;
 			
 			buffer = new BitmapData(surfOptions.width, surfOptions.height, false, 0x00);
@@ -125,22 +127,21 @@
 			quasimondoProcessor = new QuasimondoImageProcessor(buffer.rect);
 			
 			addChild(view);
-
-			//addChild(poster1);
-			addChild(MiniMap1);
-			addChild(statusbar1);
 			
-			addChild(matchView);
-			addChild(frenchmusketcontent);
-
-			//poster1.gotoAndStop(1);
+			this.addChild(MiniMap1); //Adding movieclips to the stage for future use
+			this.addChild(statusbar1);
+			this.addChild(matchView);
+			this.addChild(frenchmusketcontent);
 			
 			matchList = new MatchList(surf);
-			matchView.addEventListener(MouseEvent.CLICK, matchFind_MouseDownHandler);
+			
+			matchView.addEventListener(MouseEvent.CLICK, matchFind_MouseDownHandler); //Makes the images of the matches clickable
 
-			isMatched = false;
-			search = false;
-			camera.addEventListener(Event.RENDER, render);
+			isMatched = false; //Variable for checking wether or not there is a match on the screen (!= matchList.getMatchId();)
+
+			search = false; //Checking if user is on the search screen
+			
+			camera.addEventListener(Event.RENDER, render); //Neverending loop rendering outputs
 
 		}
 		
@@ -148,33 +149,32 @@
 		protected function render( e:Event ) : void
 		{
 			var gfx:Graphics = overlay.graphics;
-			var oldMatch:int;
 			
-			buffer.draw(camera.bitmapData, SCALE_MAT);
+			buffer.draw(camera.bitmapData, SCALE_MAT); //Draw recalculated data on the scrren
 			
-			var ipts:Vector.<IPoint> = surf.getInterestPoints(buffer);
-			gfx.clear();
+			var ipts:Vector.<IPoint> = surf.getInterestPoints(buffer); //Check for new interest points
+			gfx.clear(); //Clear the graphics variables 
+			
 			//SURFUtils.drawIPoints(gfx, ipts, SCALE);
 			
-			var matched:Vector.<MatchElement> = matchList.getMatches();
-			oldMatch = matchId;
-			matchId = matchList.getMatchId();
+			var matched:Vector.<MatchElement> = matchList.getMatches(); //Get the list of possible matches
 			
+			oldMatch = matchId;//Set oldMatch to the matchId of the last id
+			matchId = matchList.getMatchId();//Check for most recient matchId
 			
-			
-			if (matchId != 999 && oldMatch != matchId){
+			if (matchId != 999 && oldMatch == matchId){ //Major check for matches, it found add mouse listener to poster and go to the right frame
 				poster1.gotoAndStop((matchId)+2);
-				MiniMap1.gotoAndPlay(2);
+				MiniMap1.gotoAndStop(11);
 				poster1.match1.addEventListener(MouseEvent.CLICK, matchFind_MouseDownHandler);
-				}
-			else{
+			}
+			if (matchId == 999){ //If no matches are found remove everything
 				MiniMap1.gotoAndStop(1);
 				poster1.gotoAndStop(1);
 				poster1.match1.removeEventListener(MouseEvent.CLICK, matchFind_MouseDownHandler);
-				//return; //Makes match stay on screen
+				return; //Makes match stay on screen
 			}
 
-
+			//Switch statment decides what info to be displayed for each case *****(THIS SHIOULD BE A FUNCTION)!!!****
 			switch (matchId){
 				
 				case 0:
@@ -205,49 +205,18 @@
 
 			}
 
-			SURFUtils.drawMatchedBitmaps(matched, matchView);
-			stat_txt.text = 'FOUND POINTS: ' + surf.currentPointsCount + '\nPOINTS TO MATCH: ' + matchList.pointsCount;
+			SURFUtils.drawMatchedBitmaps(matched, matchView); //Show matches on the screen.
 		}
 		
-		private function matchFind_MouseDownHandler(event:MouseEvent):void {
+		private function matchFind_MouseDownHandler(event:MouseEvent):void { //Function used when a match is clicked, fade-in, fade-out
 
 			isMatched = true;
 			camera.active = false;
 			removeChild(statusbar1);
 
-			switch (matchId){
-				
-				case 0:
-					statusbar1.casename.htmlText = "Nation States at War";
-					statusbar1.exhibitname.htmlText = "Video";
-					frenchmusketcontent.gotoAndPlay(2);
+			statusbar1.exhibitname.htmlText = "Video";
+			frenchmusketcontent.gotoAndPlay(2); //Send user to the right content **Will be handled by a function**
 
-					break;
-				case 1:
-					statusbar1.casename.htmlText = "War in the Industrial Age (cases 1 and 2)";
-					statusbar1.exhibitname.htmlText = "Video";
-					frenchmusketcontent.gotoAndPlay(32);
-					break;
-				case 2:
-					statusbar1.casename.htmlText = "Crossbow";
-					statusbar1.exhibitname.htmlText = "Video";
-					frenchmusketcontent.gotoAndPlay(62);
-					break;
-				case 3:
-					statusbar1.casename.htmlText = "New Weapons";
-					statusbar1.exhibitname.htmlText = "Video";
-					frenchmusketcontent.gotoAndPlay(2);
-					break;
-				case 4:
-					statusbar1.casename.htmlText = "Pike and Musket";
-					statusbar1.exhibitname.htmlText = "Video";
-					frenchmusketcontent.gotoAndPlay(2);
-					break;
-				default:
-					frenchmusketcontent.gotoAndPlay(1);
-					break;
-				
-			}
 			addChild(statusbar1);
 			
 			if (search){
@@ -255,7 +224,7 @@
 			}
 		}
 
-		private function button_refreshMouseDownHandler(event:MouseEvent):void {
+		private function button_refreshMouseDownHandler(event:MouseEvent):void { //Refresh button handler, **Will be handled by a function**
 
 			if (isMatched){
 				switch (matchId){
@@ -285,6 +254,7 @@
 				isMatched = false;
 				camera.active = true;
 			}
+
 			if (search){
 				addChild(poster1);
 			}
